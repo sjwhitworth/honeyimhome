@@ -32,10 +32,13 @@ if __name__ == "__main__":
 
 		#Work out the time difference
 		timedifference = statsdict["last_sent"] - int(time.time())
+
+		#If the device is here, and we haven't seen it in a while
 		if statsdict["device_present"] and timedifference > 600:
-			#Send a POST request to Pushover
-			push(user=USER_ID, token=API_TOKEN, message="%s just got home" % (NAME,), title=APP_NAME)
+			push(user=USER_ID, token=API_TOKEN, 
+				 message="%s just got home" % (NAME,), 
+				 title=APP_NAME)
 			statsdict["last_sent"] = int(time.time())
-		
+
 		#Sleep for a bit
 		time.sleep(600)
